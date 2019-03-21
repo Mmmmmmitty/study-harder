@@ -3,10 +3,18 @@
     <a-layout-sider class="homepage-layout-sider">
       <div class="logo"></div>
       <a-menu theme="dark" mode="inline" :defaultSelectedKeys="default_active">
-        <a-menu-item v-for="item in menu_list" :key="item.key" @click="click(item)">
+        <a-menu-item key="1" @click="clickIndex">
+          <a-icon type="pie-chart" />
+          <span>homepage</span>
+        </a-menu-item>
+        <a-sub-menu key="sub1">
+          <span slot="title"><a-icon type="setting" /><span>Navigation Three</span></span>
+          <a-menu-item v-for="item in menu_list" :key="item.key" @click="click(item)">{{item.name}}</a-menu-item>
+        </a-sub-menu>
+        <!-- <a-menu-item v-for="item in menu_list" :key="item.key" @click="click(item)">
           <a-icon :type="item.icon"/>
           <span class="nav-text">{{item.name}}</span>
-        </a-menu-item>
+        </a-menu-item> -->
       </a-menu>
     </a-layout-sider>
     <a-layout class="right-content">
@@ -26,31 +34,31 @@ export default {
         {
           name:'GO JS',
           icon:'user',
-          key:'1',
-          path:'/'
+          key:'1-1',
+          path:'/gojs'
         },
         {
           name:'D3 JS',
           icon:'user',
-          key:'2',
+          key:'1-2',
           path:'/d3js'
         },
         {
           name:'Nuxt JS',
           icon:'user',
-          key:'3',
+          key:'1-3',
           path:'/nuxtjs'
         },
         {
           name:'Webpack',
           icon:'user',
-          key:'4',
+          key:'1-4',
           path:'/webpack'
         },
         {
           name:'Koa 2',
           icon:'user',
-          key:'5',
+          key:'1-5',
           path:'/koa2'
         },
       ],
@@ -70,6 +78,12 @@ export default {
       console.log(item)
       this.$router.push({
         path: item.path,
+      });
+    },
+    // clickIndex
+    clickIndex(){
+      this.$router.push({
+        path: '/',
       });
     },
     //根据当前路由控制左侧导航栏默认选中

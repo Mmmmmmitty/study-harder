@@ -1,6 +1,7 @@
 <template>
   <div>
-    asdasd
+    <GoExample></GoExample>
+    <doubleTreeExample></doubleTreeExample>
   </div>
 </template>
 
@@ -12,6 +13,9 @@ export default {
     return {
       
     }
+  },
+  components:{
+    GoExample,doubleTreeExample
   }
 }
 </script>

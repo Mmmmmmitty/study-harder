@@ -10,7 +10,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/q_q.ico' }
     ]
   },
   css: [
@@ -39,6 +39,12 @@ module.exports = {
           enforce: 'pre',
           test: /\.md$/,
           loader: 'text-loader',
+          exclude: /(node_modules)/
+        })
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
       }
