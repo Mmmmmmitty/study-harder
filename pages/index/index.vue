@@ -1,6 +1,6 @@
 <template>
-  <div>
-    asdasd
+  <div class="homepage-content">
+    <img src="../../assets/images/logo.png" />
   </div>
 </template>
 
@@ -17,5 +17,7 @@ export default {
 </script>
 
 <style>
-
+.homepage-content{
+  height: 100%;
+}
 </style>
