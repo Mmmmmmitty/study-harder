@@ -1,8 +1,15 @@
 <template>
   <a-layout id="homepage">
     <a-layout-sider class="homepage-layout-sider">
-      <div class="logo"></div>
-      <a-menu theme="dark" mode="inline" :defaultSelectedKeys="default_active">
+      <div class="logo">
+        <img src="../assets/images/logo.png" />
+      </div>
+      <a-menu
+        theme="dark"
+        mode="inline"
+        :defaultSelectedKeys="default_active"
+        :openKeys.sync="openKeys"
+      >
         <a-menu-item key="1" @click="clickIndex">
           <a-icon type="pie-chart"/>
           <span>homepage</span>
@@ -45,13 +52,15 @@ export default {
           name: "GO JS",
           icon: "user",
           key: "1-1",
-          path: "/gojs"
+          path: "/gojs",
+          from: "sub1"
         },
         {
           name: "D3 JS",
           icon: "user",
           key: "1-2",
-          path: "/d3js"
+          path: "/d3js",
+          from: "sub1"
         }
       ],
       sub2_list: [
@@ -59,22 +68,26 @@ export default {
           name: "Nuxt JS",
           icon: "user",
           key: "2-1",
-          path: "/nuxtjs"
+          path: "/nuxtjs",
+          from: "sub2"
         },
         {
           name: "Webpack",
           icon: "user",
           key: "2-2",
-          path: "/webpack"
+          path: "/webpack",
+          from: "sub2"
         },
         {
           name: "Koa 2",
           icon: "user",
           key: "2-3",
-          path: "/koa2"
+          path: "/koa2",
+          from: "sub2"
         }
       ],
-      default_active: ["1"]
+      default_active: ["1"],
+      openKeys: []
     };
   },
   created() {
@@ -97,13 +110,14 @@ export default {
       });
     },
     //根据当前路由控制左侧导航栏默认选中
-    defaultActive(list1,list2, path) {
-      let list = list1.concat(list2)
-      console.log(list)
+    defaultActive(list1, list2, path) {
+      let list = list1.concat(list2);
+      console.log(list);
       for (let item of list) {
         if (item.path == path) {
           this.default_active[0] = item.key;
-          console.log(item.key)
+          this.openKeys[0] = item.from;
+          console.log(item.key);
         }
       }
     }
@@ -113,9 +127,8 @@ export default {
 
 <style>
 #homepage .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
+  
+  
 }
 .homepage-layout-sider {
   overflow: auto;
